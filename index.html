@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 9</title>
+
+  <style>
+    button {
+      margin: 3px;
+    }
+
+    button:hover {
+      cursor: pointer;
+    }
+
+    #first-num,
+    #second-num {
+      width: 60px;
+    }
+
+    output {
+      border: 1px solid gray;
+      display: block;
+      height: 18px;
+      margin-top: 5px;
+      padding: 5px;
+      width: 240px;
+    }
+
+    main {
+      width: 800px;
+    }
+
+    #error-btns {
+      column-gap: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 30px;
+      row-gap: 5px;
+    }
+
+    #error-btns>* {
+      padding: 8px 2px;
+      width: 122px;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <form>
+      <fieldset>
+        <legend>Error Calculator</legend>
+        <input name="first-num" id="first-num" />
+        <select name="operator" id="operator">
+          <option>+</option>
+          <option>-</option>
+          <option>*</option>
+          <option>/</option>
+        </select>
+        <input name="second-num" id="second-num" />
+        <button id="calculate">Calculate</button>
+        <br />
+        <output></output>
+      </fieldset>
+    </form>
+
+    <section id="error-btns">
+      <button id="log">Console Log</button>
+      <button id="error">Console Error</button>
+      <button id="count">Console Count</button>
+      <button id="warn">Console Warn</button>
+      <button id="assert">Console Assert</button>
+      <button id="clear">Console Clear</button>
+      <button id="dir">Console Dir</button>
+      <button id="dirxml">Console dirxml</button>
+      <button id="groupS">Console Group Start</button>
+      <button id="groupE">Console Group End</button>
+      <button id="table">Console Table</button>
+      <button id="start">Start Timer</button>
+      <button id="end">End Timer</button>
+      <button id="trace">Console Trace</button>
+      <button id="global">Trigger a Global Error</button>
+    </section>
+  </main>
+
+  <script>
+    let form = document.querySelector('form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      let output = document.querySelector('output');
+      let firstNum = document.querySelector('#first-num').value;
+      let secondNum = document.querySelector('#second-num').value;
+      let operator = document.querySelector('#operator').value;
+      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+    });
+
+    let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
+
+    // Start your code here
+    // You may move this JS to another file if you wish
+    let x = document.getElementById("log");
+    x.addEventListener("click", () => {
+      console.log("Console Log Demo");
+    });
+    let y = document.getElementById("error");
+    y.addEventListener("click", () => {
+      console.error("Console Error Demo");
+    });
+    let a = document.getElementById("count");
+    a.addEventListener("click", () => {
+      console.count("Count Button: ");
+    });
+    let w = document.getElementById("warn");
+    w.addEventListener("click", () => {
+      console.warn("Console Warn Button");
+    });
+    let z = document.getElementById("assert");
+    z.addEventListener("click", () => {
+      console.assert(document.getElementById("bro"), "That element doesn't exist");
+    });
+    let e = document.getElementById("clear");
+    e.addEventListener("click", () => {
+      console.clear();
+    });
+    let b = document.getElementById("dir");
+    b.addEventListener("click", () => {
+      console.dir(document.location);
+    });
+    let d = document.getElementById("dirxml");
+    d.addEventListener("click", () => {
+      console.dirxml(document.getElementById("first-num"));
+    });
+    let c = document.getElementById("groupS");
+    c.addEventListener("click", () => {
+      console.group();
+    });
+    let g = document.getElementById("groupE");
+    g.addEventListener("click", () => {
+      console.groupEnd();
+    });
+    let s = document.getElementById("table");
+    s.addEventListener("click", () => {
+      console.table(["apples", "oranges", "bananas"]);
+    });
+    let h = document.getElementById("start");
+    h.addEventListener("click", () => {
+      console.time("Time");
+    });
+    let j = document.getElementById("end");
+    j.addEventListener("click", () => {
+      console.timeEnd("Time");
+    });
+    let k = document.getElementById("trace");
+    k.addEventListener("click", () => {
+      console.trace();
+    });
+    let p = document.getElementById("global");
+    p.addEventListener("click", () =>{
+      throw new Error("fail");
+    });
+  </script>
+</body>
+
+</html>
